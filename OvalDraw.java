@@ -1,3 +1,5 @@
+// Author: Miguel Ceballos
+// Note:   Drawing an oval in Cyan/Aqua. 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
@@ -5,18 +7,32 @@ import java.awt.Container;
 import java.awt.Color;
 
 class Oval extends JPanel {
-    public void paintComponent( Graphics g) {
+    private Color myColor;
+    public void setColor(int red, int green, int blue) {
+        myColor = new Color(red,green,blue);
+    }
+    public Color getColor() {
+        return myColor;
+    }
+
+    Oval() {
+        setColor(255,0,0);
+    }
+
+    Oval(int red, int green, int blue){
+        setColor(red,green,blue);
+    }
+
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         int panelWidth = getWidth();
         int panelHeight = getHeight();
 
-        g.setColor(new Color(0,0,255));
+        g.setColor(myColor);
         g.fillOval(0,0,panelWidth,panelHeight);
 
-        System.out.println("paintComponent...");
-
-    }
+        }
 }
 
 
@@ -30,7 +46,7 @@ public class OvalDraw {
         myFrame.setVisible(true);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Oval myOval = new Oval();
+        Oval myOval = new Oval(0,0,255);
         Container contentPane = myFrame.getContentPane();
         contentPane.add(myOval);
     }
